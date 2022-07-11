@@ -1,25 +1,31 @@
 import "./App.css";
-import { useReducer, useRef } from "react";
+import { useState } from "react";
 
 function App() {
-  const textTitle = useRef();
-  const hexColor = useRef();
+  const [title, setTitle] = useState("");
+  const [color, setColor] = useState("");
 
   const submit = (e) => {
     e.preventDefault();
-    const title = textTitle.current.value;
-    const color = hexColor.current.value;
-
     alert(`${title}, ${color}`);
-    textTitle.current.value = "";
-    color.current.value = "";
+    setTitle("");
+    setColor("");
   };
 
   return (
     <div className="App">
       <form onSubmit={submit}>
-        <input ref={textTitle} type="text" placeholder="color title..." />
-        <input ref={hexColor} type="color" />
+        <input
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+          type="text"
+          placeholder="color title..."
+        />
+        <input
+          value={color}
+          onChange={(event) => setColor(event.target.value)}
+          type="color"
+        />
         <button type="submit">Add</button>
       </form>
     </div>
